@@ -35,12 +35,6 @@ public class AdminController {
         return "index";
     }
 
-    @GetMapping("/admin/addNewUser")
-    public String addUser(Model model) {
-        model.addAttribute("users", new User());
-        return "addNewUser";
-    }
-
     @PostMapping("/admin/addNewUser")
     public String addNewUser(@ModelAttribute("users") User user) {
         userService.save(user);
@@ -51,12 +45,6 @@ public class AdminController {
     public String deleteUser(@RequestParam("id") int id) {
         userService.delete(id);
         return "redirect:/admin";
-    }
-
-    @GetMapping("/admin/editUser")
-    public String editUser(@RequestParam("id") int id, Model model) {
-        model.addAttribute("users", userService.findById(id));
-        return "editUser";
     }
 
     @PostMapping("/admin/editUser")

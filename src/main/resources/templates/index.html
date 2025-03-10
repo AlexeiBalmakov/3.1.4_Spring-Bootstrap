@@ -13,7 +13,8 @@
         <p class="navbar-brand text-white">
             <b><span class="align-middle" th:text="${userAuth.getUsername()}"></span></b>
             <span class="align-middle">with roles:</span>
-            <span class="align-middle" th:text="${userAuth.getUserRolesToString(userAuth.getUserRoles()).replace('ROLE_','')}"></span>
+            <span class="align-middle"
+                  th:text="${userAuth.getUserRolesToString(userAuth.getUserRoles()).replace('ROLE_','')}"></span>
         </p>
         <form th:action="@{/logout}" method="POST">
             <input class="btn text-secondary" type="submit" value="Logout">
@@ -59,7 +60,8 @@
                             <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home"
                                role="tab"
                                aria-controls="nav-home" aria-selected="true">Users table</a>
-                            <a class="nav-link" href="#" id="new-users-tab" data-bs-toggle="tab"
+                            <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" href="#" id="new-users-tab"
+                               data-bs-toggle="tab"
                                data-bs-target="#new-users-pane" type="button" role="tab" aria-controls="new-users-pane"
                                aria-selected="false">New User</a>
 
@@ -90,7 +92,8 @@
                                             <td th:text="${user.getLastName()}">LastName</td>
                                             <td th:text="${user.getAge()}">age</td>
                                             <td th:text="${user.getUsername()}">username</td>
-                                            <td th:text="${user.getUserRolesToString(user.getUserRoles()).replace('ROLE_','')}">roles
+                                            <td th:text="${user.getUserRolesToString(user.getUserRoles()).replace('ROLE_','')}">
+                                                roles
                                             </td>
                                             <td>
                                                 <a type="button" class="btn btn-sm btn-primary"
